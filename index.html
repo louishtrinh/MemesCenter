@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- ResetStyle -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- ResetStyle -->
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <!-- Bootstrap -->
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <!-- FontAwesome -->
+
+    <!-- MainCSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- MainCSS -->
+
+</head>
+
+<body>
+
+    <div id="particles-js" style="background-color:#043564;"></div>
+    <div class="container-fluid">
+        <div class="jumbotron text-white" style="background-color:rgba(204, 204, 204, 0)">
+            <div class="container text-center">
+                <h1>Memes Center</h1>
+                <p class="lead">Your source of endless fun.</p>
+                <img id="nyan" src="./assets/images/Nyan.gif">
+            </div>
+
+        </div>
+
+        <div class="row justify-content-md-center mx-0 px-0">
+            <div class="col-10 text-center">
+
+                <div class="row mb-0 pb-0">
+                    <div class="col-12">
+                        <div class="card w-100">
+                            <div class="card-header">
+                                <h4 class="">Explore the Disney Worlds</h4>
+                                <div id="buttonGoesHere">
+                                </div>
+                                <form>
+
+                                    <div class="form-group row my-3">
+                                        <!-- Label -->
+                                        <div class="col text-right">
+                                            <label class="col col-form-label mr-0 px-0" for="search-input">Add More
+                                                Worlds: </label>
+                                        </div>
+                                        <!-- Label -->
+
+                                        <!-- Input -->
+                                        <div class="col mx-0 px-0">
+                                            <input type="text" id="search-input" class="form-control" placeholder="Rapunzel">
+                                        </div>
+                                        <!-- Input -->
+
+                                        <!-- Add Btn -->
+                                        <div class="col text-left">
+                                            <button id="addBtn" class="btn btn-secondary align-middle">Hit to add</button>
+                                        </div>
+                                        <!-- Add Btn -->
+
+                                        <!-- Dummy push -->
+                                        <div class="col-md-10 col-lg-6">
+                                        </div>
+                                        <!-- Dummy push -->
+
+
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-0 pt-0 text-center">
+                    <div class="col-8 pr-0">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3 class="card-title align-middle my-0 text-right">Pulling <span id="justPulled"></span></h3>
+                                    </div>
+                                    <div class="col">
+                                        <!-- Clear result -->
+                                        <div class="col text-left">
+                                            <button id="clearBtn" class="btn btn-secondary align-middle text-left">Clear
+                                                search</button>
+                                        </div>
+                                        <!-- Clear result -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="pulledGifGoesHere">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col pl-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">My Favorite</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Your favorite GIFs</h6>
+
+                                <div id="favGifGoesHere">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <!-- ParticleJS -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- ParticleJS -->
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+    <!-- jQuery -->
+
+    <!-- FireBase -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCoc8gl5fuqO7L_I_EOcOlProqhCSmYELg",
+            authDomain: "memescenter-9d5cf.firebaseapp.com",
+            databaseURL: "https://memescenter-9d5cf.firebaseio.com",
+            projectId: "memescenter-9d5cf",
+            storageBucket: "",
+            messagingSenderId: "104515663656"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <!-- FireBase -->
+
+    <!-- Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+
+    <!-- JScript -->
+    <script src="assets/javascript/app.js"></script>
+    <!-- JScript -->
+
+</body>
+
+</html>
