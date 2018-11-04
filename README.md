@@ -1,5 +1,5 @@
 # MemesCenter
-All added tag and favorite gif are store on Firebase.
+All added tags and favorite gifs are stored on Firebase.
 
 Function to upgrade later on:
 1. Store random gif from outside.
