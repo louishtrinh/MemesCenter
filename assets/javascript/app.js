@@ -224,6 +224,13 @@ memeCenter = {
       $(this).attr("src", $(this).attr("data-still"));
       $(this).attr("data-status", 0);
     }
+  },
+  removeFav: function() {
+    var keyToRemove = $(this).attr("data-key");
+    /* Remove from Firebase */
+    database.ref().child(keyToRemove).set({});
+    /* Remove from page */
+    $(this).closest(".card").remove();
   }
 };
 
@@ -247,68 +254,64 @@ $("#addBtn").on("click", function(event) {
 });
 
 database.ref().on("child_added", function(snapshot) {
-  console.log(snapshot);
-
   /* Make button to call GIF */
   if (snapshot.val().worlds) {
     memeCenter.listWorld.push(snapshot.val().worlds.toUpperCase());
-
     var child = $("<button>");
     child.attr("data-world", snapshot.val().worlds);
     child.attr("data-count", 1);
     child.addClass("gifBtn btn btn-outline-dark btn-lg mx-1 my-1");
     child.text(snapshot.val().worlds);
     $("#buttonGoesHere").append(child);
-  } else if (snapshot.val().favorite) {
+  } 
+  else if (snapshot.val().favorite) {
 
-  /* Favorite render */
-    debugger;
-    var data1 = snapshot.val().favorite.dataActive;
-    var data2 = snapshot.val().favorite.dataStill;
-    var data3 = snapshot.val().favorite.dataRating;
-    var key = snapshot.key;
-
-    /* Gif Card */
-    var parentCard = $("<div>");
-    parentCard.addClass("card w-auto text-center float-left ");
-
-    /* Img on top of card */
-    var gifImg = $("<img>");
-    gifImg.addClass("card-img-top gifImage");
-    gifImg.attr("data-rating", 0);
-    gifImg.attr("data-status", 0);
-    gifImg.attr("data-active", data1);
-    gifImg.attr("data-still", data2);
-    gifImg.attr("src", gifImg.attr("data-still"));
-    gifImg.attr("style", "width: 100%;height: 100%");
-
-    /* Container on bottom of card */
-    var cardBody = $("<div>");
-    cardBody.addClass("card-body");
-
-    /* Favorite button */
-    var rmvFavBtn = $("<button>");
-    rmvFavBtn.text("Remove favorite");
-    rmvFavBtn.addClass("rmvFavBtn btn btn-lg btn-secondary");
-    rmvFavBtn.attr("data-key", key);
-
-
-    /* Rating */
-    var text = $("<h3>").html(
-      "Rating" + '<span class="badge badge-secondary">' + data3 + "</span>"
-    );
-    /* Favorite btn and rating added to text on bottom */
-    cardBody.append(favBtn);
-    cardBody.append(text);
-
-    /* Add img and text to Gif card */
-    parentCard.append(gifImg);
-    parentCard.append(cardBody);
-
-    /* Add Gif card to page */
-    $("#favGifGoesHere").prepend(parentCard);
-  }
-  /* Save data to local list for existence check */
+    /* Favorite render */
+      var data1 = snapshot.val().favorite.dataActive;
+      var data2 = snapshot.val().favorite.dataStill;
+      var data3 = snapshot.val().favorite.dataRating;
+      var key = snapshot.key;
+  
+      /* Gif Card */
+      var parentCard = $("<div>");
+      parentCard.addClass("card w-auto text-center float-left ");
+  
+      /* Img on top of card */
+      var gifImg = $("<img>");
+      gifImg.addClass("card-img-top gifImage");
+      gifImg.attr("data-rating", 0);
+      gifImg.attr("data-status", 0);
+      gifImg.attr("data-active", data1);
+      gifImg.attr("data-still", data2);
+      gifImg.attr("src", gifImg.attr("data-still"));
+      gifImg.attr("style", "width: 100%;height: 100%");
+  
+      /* Container on bottom of card */
+      var cardBody = $("<div>");
+      cardBody.addClass("card-body");
+  
+      /* Favorite button */
+      var rmvFavBtn = $("<button>");
+      rmvFavBtn.text("Remove favorite");
+      rmvFavBtn.addClass("rmvFavBtn btn btn-lg btn-secondary");
+      rmvFavBtn.attr("data-key", key);
+  
+  
+      /* Rating */
+      var text = $("<h3>").html(
+        "Rating" + '<span class="badge badge-secondary">' + data3 + "</span>"
+      );
+      /* Favorite btn and rating added to text on bottom */
+      cardBody.append(rmvFavBtn);
+      cardBody.append(text);
+  
+      /* Add img and text to Gif card */
+      parentCard.append(gifImg);
+      parentCard.append(cardBody);
+  
+      /* Add Gif card to page */
+      $("#favGifGoesHere").prepend(parentCard);
+    }
 });
 
 $(document).on("click", ".gifBtn", memeCenter.getGif);
@@ -317,3 +320,4 @@ $(document).on("click", "#clearBtn", function() {
   $("#pulledGifGoesHere").empty();
 });
 $(document).on("click", ".favBtn", memeCenter.addFav);
+$(document).on("click", ".rmvFavBtn", memeCenter.removeFav);
