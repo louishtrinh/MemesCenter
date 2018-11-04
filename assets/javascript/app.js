@@ -142,7 +142,7 @@ memeCenter = {
       "https://api.giphy.com/v1/gifs/search?q=" +
       worldToPull +
       api +
-      "&limit=1&offset=" +
+      "&limit=10&offset=" +
       count;
 
     count = count + 10;
